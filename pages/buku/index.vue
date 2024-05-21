@@ -28,23 +28,21 @@
 </template>
 <script setup>
 const supabase= useSupabaseClient ()
-const books = ref([])
 
+const books = ref([])
 const getbooks = async () => {
-  const { data ,error } = await supabase.from('buku').select(`*, kategori(*)`).order('id')
+  const { data ,error } = await supabase
+  .from('buku')
+  .select(`*, kategori(*)`)
+  .ilike("judul", `%${keyword.value}`)
+  .order('id')
   if(data) books.value = data
 }
 
 onMounted(() =>{
   getbooks()
 })
-
 const keyword = ref('')
-const getBooks = async () => {
-  const { data, error } = await supabase.from('buku').select(`*, kategori(*)`)
-  if(data) books.value = data
-}
-
 </script>
 <style scoped>
 .content{

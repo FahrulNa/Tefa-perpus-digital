@@ -17,10 +17,10 @@
                     <div class="row">
                     <div class="badge bg-primary p-2">{{ buku.kategori }}</div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Penulis: {{ buku.penulis }}</li>
-                            <li class="list-group-item">Penerbit: {{ buku.penerbit }}</li>
-                            <li class="list-group-item">Deskripsi: {{ buku.deskripsi }}</li>
-                            <li class="list-group-item"></li>
+                            <li class="list-group-item">PENULIS: {{ buku.penulis }}</li>
+                            <li class="list-group-item">PENERBIT: {{ buku.penerbit }}</li>
+                            <li class="list-group-item">DESKRIPSI: {{ buku.deskripsi }}</li>
+                            <li class="list-group-item">TAHUN TERBIT</li>
                         </ul>                       
                     </div>
                     <div class="row">
