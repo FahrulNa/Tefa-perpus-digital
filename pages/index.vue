@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-12 ">
           <form @submit.prevent="kirimData">
-            <h2 class="text-center my-4 text-light">ISI DATA KUNJUNGAN</h2>
+            <h2 class="text-center my-4 text-light fw-bold">ISI DATA KUNJUNGAN</h2>
             <div class="mb-3">
               <input v-model="form.nama" type="text" placeholder="Nama ..." class="form-control form-control-lg rounded-5" required>
             </div>
@@ -56,7 +56,7 @@
               <option v-for="(item,i) in objectives" :key="i" :value="item.id">{{ item.nama }}</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-dark btn-lg rounded-5 px-5" value="submit">SUBMIT</button>
+            <button type="submit" class="btn btn-dark btn-lg rounded-5 px-5 fw-bold" value="submit">SUBMIT</button>
           </form>
         </div>
       </div>
@@ -125,7 +125,7 @@ onMounted(() => {
 }
 form {
   background-image:linear-gradient(#808080,#ffffff)  ;
-  padding: 1rem;
+  padding: 3rem;
   border-radius: 20px;
 }
 .container-fluid {
@@ -134,4 +134,5 @@ form {
   width: 100%;
   height: 100vh;
 }
+
 </style>

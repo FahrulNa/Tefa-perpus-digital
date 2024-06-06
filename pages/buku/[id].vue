@@ -3,22 +3,22 @@
         <div class="container-fluid">
             <nuxt-link to="/buku">
                 <button type="button" class="btn btn-outline-dark btn-lg mt-4">KEMBALI</button></nuxt-link>
-                    <h2 class="text-center my-4">RINCIAN BUKU</h2>
+                    <h2 class="text-center my-4 fw-bold">RINCIAN BUKU</h2>
             <div class="row d-flex justify-content-center flex-md-wrap" style="padding-top: 190px;">
                 <div class="col-3 ">
                         <img :src="buku?.cover"  class="cover row img-fluid" alt="cover buku"   style="width: 250px;">
                 </div>
                 <div class="col-8">
                     <div class="row">
-                        <h1 class="text start text-center my-4">{{ buku?.judul }}</h1>
+                        <h2 class="text start text-center my-4 fst-italic fw-bold">{{ buku?.judul }}</h2>
                     </div>
                         <div class="row">
-                            <h2>PENULIS: {{ buku?.penulis }}</h2>
-                            <h2>PENERBIT: {{ buku?.penerbit }}</h2>
-                            <h2>TAHUN TERBIT: {{ buku?.tahun_terbit }}</h2>
-                            <h2>RAK: {{ buku?.rak }}</h2>
-                            <h2>KATEGORI: {{ buku?.kategori_buku?.nama }}</h2>
-                            <h2>DESKRIPSI: {{ buku?.deskripsi }}</h2>                    
+                            <h3>PENULIS: {{ buku?.penulis }}</h3>
+                            <h3>PENERBIT: {{ buku?.penerbit }}</h3>
+                            <h3>TAHUN TERBIT: {{ buku?.tahun_terbit }}</h3>
+                            <h3>RAK: {{ buku?.rak }}</h3>
+                            <h3>KATEGORI: {{ buku?.kategori_buku?.nama }}</h3>
+                            <h3>DESKRIPSI: {{ buku?.deskripsi }}</h3>                    
                         </div>
                 </div>
             </div>

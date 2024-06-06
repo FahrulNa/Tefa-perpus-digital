@@ -5,17 +5,17 @@
         <div class="col-lg-12">
           <nuxt-link to="/pengunjung">
           <button type="button" class="btn btn-outline-dark mt-4 btn-lg">KEMBALI</button></nuxt-link>
-          <h2 class="text-center my-4">RIWAYAT KUNJUNGAN</h2>
+          <h2 class="text-center my-4 fw-bold">RIWAYAT KUNJUNGAN</h2>
           <div class="my-3">
             <form @submit.prevent="getPengunjung">
-              <input v-model="keyword" type="search" class="form-control form-control-lg rounded-5" placeholder="Cari..." @input="getPengunjung" />
+              <input v-model="keyword" type="search" class="form-control rounded-5" placeholder="Cari Nama..." @input="getPengunjung" />
             </form>
           </div>
-          <div class="my-3">menampilkan {{ visitors.length }} dari {{ visitors.length}} riwayat</div>
+          <div class="my-3">Menampilkan {{ visitors.length }} dari {{ jmlpengunjung}} riwayat</div>
           <div class="table-responsive">
             <table class="table table-bordered border-dark">
             <thead>
-              <tr class="text-center">
+              <tr class="text-center fw-bold fst-italic">
                 <td>ID</td>
                 <td>NAMA</td>
                 <td>KEANGGOTAAN</td>
@@ -26,7 +26,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(visitors,i) in visitors" :key="i" class="text-center">
+              <tr v-for="(visitors,i) in visitors" :key="i" class="text-center fst-italic">
                 <td>{{ i+1 }}.</td>
                 <td>{{ visitors.nama }}</td>
                 <td>{{ visitors.keanggotaan.nama }}</td>
@@ -48,6 +48,7 @@ const supabase= useSupabaseClient()
 
 const keyword = ref('')
 const visitors = ref([])
+const jmlpengunjung= ref(0)
 
 const getPengunjung =async () => {
   const { data, error } = await supabase
@@ -57,19 +58,23 @@ const getPengunjung =async () => {
   .order('tanggal', { ascending: false})
   if(data) visitors.value = data
 }
+
+const getJmlPengunjung = async () => {
+  const{ data, count } = await supabase
+    .from("pengunjung") 
+    .select('*', { count: "exact" })
+    if(data) jmlpengunjung.value = count
+}
+
 onMounted(() =>{
   getPengunjung()
+  getJmlPengunjung()
 })
-
-
 
 </script>
 <style scoped>
 .content{
   background-image: linear-gradient(#808080,#ffffff);
   font-family: "";
-}
-.h2{
-  color:white;
 }
 </style>

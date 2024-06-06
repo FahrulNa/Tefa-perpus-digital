@@ -6,16 +6,16 @@
           <nuxt-link to="/pengunjung">
             <button type="button" class="btn btn-outline-dark mt-4 btn-lg">KEMBALI</button>
           </nuxt-link>
-            <h2 class="text-center my-4">RAK BUKU</h2>
+            <h2 class="text-center my-4 fw-bold">RAK BUKU</h2>
             <form @submit.prevent="getBooks" class="col mb-3">
               <div class="input-group flex-nowrap rounded">
-                <input v-model="keyword" type="search" class="form-control from-control-lg rounded-5" placeholder="Cari..." aria-label="Search" @input="getbooks" />
+                <input v-model="keyword" type="search" class="form-control from-control-lg rounded-5" placeholder="Cari Judul..." aria-label="Search" @input="getbooks" />
               </div>
             </form>
-            <div class="my-3">menampilkan {{ books.length }} buku dari {{ books.length }}</div>
+            <div class="my-3">Menampilkan {{ books.length }} buku dari {{ jmlbuku }}</div>
           </div>
         </div>
-          <div class="row">
+          <div class="row shadow-lg">
               <div v-for="(book,i) in books" :key="i" class="col">
                   <div class="card mb-3 col-lg-2 col-2">
                     <nuxt-link :to="`/buku/${book.id}`">
@@ -34,6 +34,7 @@ const supabase= useSupabaseClient()
 
 const keyword = ref('')
 const books = ref([])
+const jmlbuku = ref(0)
 
 const getbooks = async () => {
   const { data ,error } = await supabase
@@ -43,12 +44,30 @@ const getbooks = async () => {
   .order('id')
   if(data) books.value = data
 }
+const getJmlBuku = async () => {
+  const{ data, count } = await supabase
+    .from("buku") 
+    .select('*', { count: "exact" })
+    if(data) jmlbuku.value = count
+}
 
 onMounted(() =>{
   getbooks()
+  getJmlBuku()
+
 })
 </script>
 <style scoped>
+.shadow-lg {
+  box-shadow: 6px 4px 0 #2e2e2eae !important;
+}
+.card {
+  transition: .2s;
+}
+.card:hover {
+  transform: scale(0.95);
+  box-shadow: 4px 4px 20px #242424e7 !important;
+}
 .content{
   background-image: linear-gradient(#808080,#ffffff);
   font-family: "";

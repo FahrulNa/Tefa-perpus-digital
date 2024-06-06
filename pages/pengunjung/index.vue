@@ -33,13 +33,13 @@
 <style scoped>
 .content{
   background-image: linear-gradient(#808080,#ffffff);
-  font-family: "";
 }
 .card {
   opacity: 80%;
   color: white;
+  text-shadow: 1px 1px 10px black;
   align-items: center;
-  height:250px;
+  height:240px;
   box-shadow: 1px 1px 10px #424242;
 }
 .card.bg-pengunjung {
